@@ -1,0 +1,20 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this blog",
+      "description": "Some additional details about the blog",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-02T13:31:03+13:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Martin Wong Blog",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-03-02T13:31:04+13:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
