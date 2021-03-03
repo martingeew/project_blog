@@ -1,12 +1,11 @@
 ---
-title: "Welcome to Martin Wong Blog"
+title: "Welcome to Martin Wong's Blog"
 description: |
-  Welcome to our new blog, Martin Wong Blog. We hope you enjoy 
-  reading what we have to say!
+  A blog covering odd topics through data vizualisation and modelling.
 author:
-  - name: Nora Jones 
+  - name: Martin Wong 
     url: https://example.com/norajones
-    affiliation: Spacely Sprockets
+    affiliation: Blue Yonder
     affiliation_url: https://example.com/spacelysprokets
 date: 03-02-2021
 output:

@@ -1,7 +1,7 @@
-name: "project_blog"
-title: "Martin Wong Blog"
+name: "Martin Wong"
+title: "Martin Wong's Blog"
 description: |
-  Martin Wong Blog
+  A blog covering odd topics through data vizualisation and modelling.
 output_dir: "_site"
 navbar:
   right:

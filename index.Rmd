@@ -1,5 +1,5 @@
 ---
-title: "Martin Wong Blog"
+title: "Martin Wong's Blog"
 site: distill::distill_website
 listing: posts
 ---
