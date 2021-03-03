@@ -1,5 +1,6 @@
 name: "Martin Wong"
 title: "Martin Wong's Blog"
+theme: tidy_model_theme.css
 description: |
   A blog covering odd topics through data vizualisation and modelling.
 output_dir: "_site"

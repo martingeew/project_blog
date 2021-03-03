@@ -6,14 +6,14 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-03T14:25:32+13:00"
+      "last_modified": "2021-03-03T15:11:32+13:00"
     },
     {
       "path": "index.html",
       "title": "Martin Wong's Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-03-03T14:25:32+13:00"
+      "last_modified": "2021-03-03T15:11:33+13:00"
     }
   ],
   "collections": ["posts/posts.json"]
