@@ -4,6 +4,7 @@ theme: tidy_model_theme.css
 description: |
   A blog covering odd topics through data vizualisation and modelling.
 output_dir: "_site"
+base_url: https://martinwongblog.netlify.app/
 navbar:
   right:
     - text: "Home"
