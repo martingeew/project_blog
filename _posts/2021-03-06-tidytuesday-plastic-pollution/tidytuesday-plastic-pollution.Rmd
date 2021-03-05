@@ -1,0 +1,65 @@
+---
+title: "TidyTuesday: Plastic Pollution"
+description: |
+  TidyTuesday challenge for 2021-01-26.
+author:
+  - name: Martin Wong
+    url: https://example.com/norajones
+date: 03-06-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, fig.showtext = T, fig.retina = 1)
+library(tidytuesdayR)
+library(fontawesome)
+```
+
+In this TidyTuesday challenge we have data on plastic pollution by country. I created a quick word cloud
+to examine the companies that appeared the most in the survey.
+
+```{r plastic pollution setup, message=FALSE, results='hide'}
+library(tidyverse)
+library(wordcloud)
+library(RColorBrewer)
+tt <- tt_load("2021-01-26")
+```
+
+```{r plastic pollution wrangle, message=FALSE}
+
+
+plastics_brand <- tt$plastics %>%
+  filter(year == 2019)  %>%
+  filter(parent_company != "Grand Total")  %>%
+  filter(parent_company != "EMPTY") %>%
+  select(parent_company, hdpe,o, ldpe, pet,ps, pp, pvc) %>%
+  group_by(parent_company) %>%
+  mutate(total=sum(hdpe,o, ldpe, pet, ps,pp, pvc, na.rm=TRUE))  %>%
+  arrange(desc(total))
+
+plastics_brand<-plastics_brand[!duplicated(plastics_brand$parent_company),]%>%
+  filter(parent_company != "Unbranded")  %>%
+  filter(total > 2)  %>%
+  select(parent_company,total)
+
+plastics_brand<-plastics_brand %>% 
+  rename(
+    word=parent_company,
+    freq=total
+    )
+```
+
+```{r plastic pollution Visualize, message=FALSE}
+
+df_word <- data.frame(word = plastics_brand$word,freq=plastics_brand$freq)
+
+set.seed(1234) # for reproducibility 
+wordcloud(words = df_word$word, freq = df_word$freq, min.freq = 200,max.words=200, random.order=FALSE, rot.per=0.35,            colors=brewer.pal(8, "Dark2"), scale=c(1.5,0.25))
+
+
+```
+
+

@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-03-06-tidytuesday-plastic-pollution/",
+    "title": "TidyTuesday: Plastic Pollution",
+    "description": "TidyTuesday challenge for 2021-01-26.",
+    "author": [
+      {
+        "name": "Martin Wong",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-03-06",
+    "categories": [],
+    "contents": "\r\nIn this TidyTuesday challenge we have data on plastic pollution by country. I created a quick word cloud to examine the companies that appeared the most in the survey.\r\n\r\n\r\nlibrary(tidyverse)\r\nlibrary(wordcloud)\r\nlibrary(RColorBrewer)\r\ntt <- tt_load(\"2021-01-26\")\r\n\r\n\r\n\r\n\r\n\r\nplastics_brand <- tt$plastics %>%\r\n  filter(year == 2019)  %>%\r\n  filter(parent_company != \"Grand Total\")  %>%\r\n  filter(parent_company != \"EMPTY\") %>%\r\n  select(parent_company, hdpe,o, ldpe, pet,ps, pp, pvc) %>%\r\n  group_by(parent_company) %>%\r\n  mutate(total=sum(hdpe,o, ldpe, pet, ps,pp, pvc, na.rm=TRUE))  %>%\r\n  arrange(desc(total))\r\n\r\nplastics_brand<-plastics_brand[!duplicated(plastics_brand$parent_company),]%>%\r\n  filter(parent_company != \"Unbranded\")  %>%\r\n  filter(total > 2)  %>%\r\n  select(parent_company,total)\r\n\r\nplastics_brand<-plastics_brand %>% \r\n  rename(\r\n    word=parent_company,\r\n    freq=total\r\n    )\r\n\r\n\r\n\r\n\r\n\r\ndf_word <- data.frame(word = plastics_brand$word,freq=plastics_brand$freq)\r\n\r\nset.seed(1234) # for reproducibility \r\nwordcloud(words = df_word$word, freq = df_word$freq, min.freq = 200,max.words=200, random.order=FALSE, rot.per=0.35,            colors=brewer.pal(8, \"Dark2\"), scale=c(1.5,0.25))\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-03-06T12:44:49+13:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/welcome/",
     "title": "Welcome to Martin Wong's Blog",
     "description": "A blog covering odd topics through data vizualisation and modelling.",

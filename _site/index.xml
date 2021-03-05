@@ -7,7 +7,15 @@
     <description>A blog covering odd topics through data vizualisation and modelling.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 02 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>TidyTuesday: Plastic Pollution</title>
+      <dc:creator>Martin Wong</dc:creator>
+      <link>https://martinwongblog.netlify.app/posts/2021-03-06-tidytuesday-plastic-pollution</link>
+      <description>TidyTuesday challenge for 2021-01-26.</description>
+      <guid>https://martinwongblog.netlify.app/posts/2021-03-06-tidytuesday-plastic-pollution</guid>
+      <pubDate>Sat, 06 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Welcome to Martin Wong's Blog</title>
       <dc:creator>Martin Wong</dc:creator>
