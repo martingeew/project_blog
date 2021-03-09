@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-03-06-tidytuesday-income-inequality-in-the-us/",
+    "title": "TidyTuesday: Income Inequality in the US",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Martin Wong",
+        "url": "https://example.com/norajones"
+      }
+    ],
+    "date": "2021-03-06",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n tt <- tt_load(\"2021-02-09\")\r\n\r\n\r\n\r\n\r\n\r\nincome_mean <- tt$income_mean\r\nincome_aggregate <- tt$income_aggregate\r\nincome_aggregate_all <- income_aggregate %>%\r\n  filter(race == \"All Races\") %>%\r\n  filter(year == 1967 | year==1977 | year==1987  | year==1997 | year==2007 | year == 2019 )\r\n\r\nincome_aggregate_all$year <- factor(income_aggregate_all$year,levels = c(\"1967\", \"1977\", \"1987\", \"1997\", \"2007\", \"2019\"), labels = c(\"1967\", \"1977\", \"1987\", \"1997\", \"2007\", \"2019\"), ordered = TRUE)\r\n\r\nincome_mean_pivot <- income_mean %>%\r\n  filter(year == 1987 | year == 2019 ) %>%\r\n  filter(dollar_type == \"2019 Dollars\") %>%\r\n  filter(income_dollars != \"EMPTY\") %>%\r\n  filter(race!=\"Asian Alone\" & race!=\"Black Alone or in Combination\")  %>%\r\n  pivot_wider(names_from = year, values_from = income_dollars)\r\n\r\nincome_mean_growth <- income_mean_pivot %>%\r\nmutate(income_change=((`2019`-`1987`)/`1987`)*100)\r\n\r\n\r\n\r\n\r\n\r\nlibrary(CGPfunctions)\r\nlibrary(patchwork)\r\n\r\ntheme_set(theme_minimal())\r\n\r\np1=newggslopegraph(\r\n  income_aggregate_all,\r\n  year,income_share,\r\n  income_quintile, \r\n  Title = \"Share of aggregate income (US)\",\r\n  SubTitle = \"By income qunintile\",\r\n  LineColor = c(\"Fourth\" = \"gray\", \"Highest\" = \"green\", \"Top 5%\" = \"red\", \"Third\" = \"gray\", \"Second\" = \"gray\",\"Lowest\" =\r\n                  \"gray\"),\r\n  XTextSize = 10,\r\n  TitleTextSize = 14,\r\n  Caption = NULL,\r\n  \r\n)\r\n\r\ntheme_set(theme_minimal())\r\n\r\np2 = ggplot(income_mean_growth,aes(x = reorder(income_quintile, -income_change),y=income_change,fill=race))+\r\n  geom_col(width=0.6)+ \r\n  coord_flip()+\r\n  facet_wrap(~ race, nrow = 1)+\r\n  theme(strip.text = element_text(\r\n    hjust = 0, size = 11))+\r\n  theme(panel.grid.major.y = element_blank())+\r\n  theme(panel.grid.minor.x = element_blank())+\r\n  scale_fill_brewer(palette=\"Set1\")+\r\n  theme(legend.position = \"none\")+\r\n  labs(\r\n    x =  \"Income quintile\" ,\r\n    y =\"Change in average income (%)\",\r\n    title=\"Change in average income between 1987 and 2019 (US)\",\r\n    caption=\"Source: US Census\"\r\n  )+\r\n  theme(plot.title = element_text(face = \"bold\",\r\n                                  margin = margin(10, 0, 10, 0),\r\n                                  size = 14))+\r\n  theme(axis.title.x = element_text(margin = margin(t = 10)),\r\n        axis.title.y = element_text(margin = margin(r = 10)))\r\n\r\np1/p2\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-03-09T15:03:20+13:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-03-06-tidytuesday-plastic-pollution/",
     "title": "TidyTuesday: Plastic Pollution",
     "description": "TidyTuesday challenge for 2021-01-26.",
@@ -13,7 +30,7 @@
     "categories": [],
     "contents": "\r\nIn this TidyTuesday challenge we have data on plastic pollution by country. I created a quick word cloud to examine the companies that appeared the most in the survey.\r\n\r\n\r\nlibrary(tidyverse)\r\nlibrary(wordcloud)\r\nlibrary(RColorBrewer)\r\ntt <- tt_load(\"2021-01-26\")\r\n\r\n\r\n\r\n\r\n\r\nplastics_brand <- tt$plastics %>%\r\n  filter(year == 2019)  %>%\r\n  filter(parent_company != \"Grand Total\")  %>%\r\n  filter(parent_company != \"EMPTY\") %>%\r\n  select(parent_company, hdpe,o, ldpe, pet,ps, pp, pvc) %>%\r\n  group_by(parent_company) %>%\r\n  mutate(total=sum(hdpe,o, ldpe, pet, ps,pp, pvc, na.rm=TRUE))  %>%\r\n  arrange(desc(total))\r\n\r\nplastics_brand<-plastics_brand[!duplicated(plastics_brand$parent_company),]%>%\r\n  filter(parent_company != \"Unbranded\")  %>%\r\n  filter(total > 2)  %>%\r\n  select(parent_company,total)\r\n\r\nplastics_brand<-plastics_brand %>% \r\n  rename(\r\n    word=parent_company,\r\n    freq=total\r\n    )\r\n\r\n\r\n\r\n\r\n\r\ndf_word <- data.frame(word = plastics_brand$word,freq=plastics_brand$freq)\r\n\r\nset.seed(1234) # for reproducibility \r\nwordcloud(words = df_word$word, freq = df_word$freq, min.freq = 200,max.words=200, random.order=FALSE, rot.per=0.35,            colors=brewer.pal(8, \"Dark2\"), scale=c(1.5,0.25))\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
     "preview": {},
-    "last_modified": "2021-03-06T12:44:49+13:00",
+    "last_modified": "2021-03-06T13:18:06+13:00",
     "input_file": {}
   },
   {
