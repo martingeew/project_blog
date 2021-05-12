@@ -7,7 +7,16 @@
     <description>A blog covering odd topics through data vizualisation and modelling.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 06 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 May 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>TidyTuesday: Netflix titles</title>
+      <dc:creator>Martin Wong</dc:creator>
+      <link>https://martinwongblog.netlify.app/posts/2021-05-12-tidytuesday-netflix-titles</link>
+      <description>A short description of the post.</description>
+      <guid>https://martinwongblog.netlify.app/posts/2021-05-12-tidytuesday-netflix-titles</guid>
+      <pubDate>Wed, 12 May 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://martinwongblog.netlify.app/posts/2021-05-12-tidytuesday-netflix-titles/tidytuesday-netflix-titles_files/figure-html5/unnamed-chunk-1-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>TidyTuesday: Income Inequality in the US</title>
       <dc:creator>Martin Wong</dc:creator>

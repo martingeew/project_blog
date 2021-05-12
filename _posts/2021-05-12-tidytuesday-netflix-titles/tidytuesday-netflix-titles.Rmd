@@ -1,0 +1,42 @@
+---
+title: "TidyTuesday: Netflix titles"
+description: |
+  A short description of the post.
+author:
+  - name: Martin Wong
+    url: https://example.com/norajones
+date: 05-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(reticulate)
+library(tidyverse)
+# library(tidytuesdayR)
+
+use_condaenv("r-reticulate")
+```
+
+```{python}
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# netflix_titles=pd.read_csv("netflix_titles.csv")
+# netflix_titles.head()
+
+t=np.arange(0.0,2.0,0.1)
+s=1+np.sin(2*np.pi*t)
+plt.plot(t,s)
+plt.show()
+
+```
+
+
+
